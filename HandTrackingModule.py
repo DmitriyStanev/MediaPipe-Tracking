@@ -18,7 +18,6 @@ class handDetector():
     def findHands(self, img, draw=True):
         imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         self.results = self.hands.process(imgRGB)
-        # print(results.multi_hand_landmarks)
 
         if self.results.multi_hand_landmarks:
             for handLandmarks in self.results.multi_hand_landmarks:
@@ -36,7 +35,6 @@ class handDetector():
                 height, width, channel = img.shape
 
                 cx, cy = int(landmark.x * width), int(landmark.y * height)
-                print("ID ---> ", id, "CX ---> ", cx, "CY ---> ", cy)
                 landmarkList.append([id, cx, cy])
                 if draw:
                     cv2.circle(img, (cx, cy), 5, (255, 0, 255), cv2.FILLED)
@@ -46,7 +44,6 @@ class handDetector():
 
 def main():
     previousTime = 0
-    currentTime = 0
     cap = cv2.VideoCapture(0)
     detector = handDetector()
 
